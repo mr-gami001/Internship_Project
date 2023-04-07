@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611997606478",
+    "project_id": "let-me-check-42d8a",
+    "storage_bucket": "let-me-check-42d8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611997606478:android:56a3f6f68d18cf9c98991f",
+        "android_client_info": {
+          "package_name": "com.example.let_me_check"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611997606478-t01flkole894dkam0budf2hiapcg2n2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSdcgoF062zqpjGydcsCtJm-NgLxuapDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611997606478-t01flkole894dkam0budf2hiapcg2n2g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

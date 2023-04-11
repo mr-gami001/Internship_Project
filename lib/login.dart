@@ -72,9 +72,24 @@ class _loginState extends State<login> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
+          Container(
+            margin: EdgeInsets.only(top: height*0.18,bottom: 10),
+            height: height*0.15,
+            width: width,
+            child: CircleAvatar(
+              backgroundColor: (Theme.of(context).brightness == Brightness.dark) ? Colors.black12 : Colors.black12,
+              child: ClipOval(
+                child: ImageIcon(
+                    AssetImage("android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"),
+                  color: (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Colors.black,
+                  size: height*0.15,
+                )
+              ),
+            ),
+          ),
 
           Container(
-              margin: EdgeInsets.only(left: 20,top: height*0.3,right: 20,bottom: 20),
+              margin: EdgeInsets.only(left: 20,top: 10,right: 20,bottom: 20),
               width: MediaQuery.of(context).size.height*0.7,
               child: TextField(
                 controller: name,

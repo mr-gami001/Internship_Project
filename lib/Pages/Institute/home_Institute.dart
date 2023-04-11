@@ -109,7 +109,7 @@ class _home_instituteState extends State<home_institute> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
-                leading: Image.network("https://img.icons8.com/ios-glyphs/30/000000/bus.png"),
+                leading: Image.network("https://img.icons8.com/ios-glyphs/30/000000/bus.png",color: isdark ? Colors.white : Colors.black,),
                 title: Text('Bus Data',style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{
@@ -125,7 +125,7 @@ class _home_instituteState extends State<home_institute> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
-                leading: Image.network('https://img.icons8.com/windows/32/000000/schoolboy-at-a-desk.png'),
+                leading: Image.network('https://img.icons8.com/windows/32/000000/schoolboy-at-a-desk.png',color: isdark ? Colors.white : Colors.black),
                 title: Text('Student Data',style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{
@@ -142,7 +142,7 @@ class _home_instituteState extends State<home_institute> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
-                leading: Image.network("https://img.icons8.com/ios-glyphs/30/000000/couple-man-woman.png"),
+                leading: Image.network("https://img.icons8.com/ios-glyphs/30/000000/couple-man-woman.png",color: isdark ? Colors.white : Colors.black),
                 title: Text('Parents Data',style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{
@@ -164,7 +164,7 @@ class _home_instituteState extends State<home_institute> {
                   await FirebaseMessaging.instance.unsubscribeFromTopic('Institute');
                   await Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
                 },
-                trailing: Icon(Icons.logout,color: Colors.black,),
+                leading: Icon(Icons.logout,color: isdark ? Colors.white : Colors.black),
                 title: Text('Log Out',style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
               )
             ),

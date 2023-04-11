@@ -131,7 +131,7 @@ class _home_ParentsState extends State<home_Parents> {
                   ),
 
                   Divider(
-                    color: Colors.black54,
+                    color: isdark ? Colors.white54 : Colors.black54,
                     thickness: 1,
                     indent: 10,
                     endIndent: 10,
@@ -144,7 +144,7 @@ class _home_ParentsState extends State<home_Parents> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/ios-filled/30/000000/name.png'),
+                      leading: Image.network('https://img.icons8.com/ios-filled/30/000000/name.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("Name : "+snapshot.data!.name.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
@@ -156,7 +156,7 @@ class _home_ParentsState extends State<home_Parents> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/user-male-circle.png'),
+                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/user-male-circle.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("User Id : "+snapshot.data!.userid.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
@@ -168,7 +168,7 @@ class _home_ParentsState extends State<home_Parents> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png'),
+                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("Student User Id : "+snapshot.data!.studentuserid.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
@@ -180,7 +180,7 @@ class _home_ParentsState extends State<home_Parents> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/marker--v1.png'),
+                      leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/marker--v1.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("Track location",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                       onTap: ()async{
                         StudentModel studentmodel = await _student.fetchstudentdata(snapshot.data!.studentuserid.toString());
@@ -194,10 +194,10 @@ class _home_ParentsState extends State<home_Parents> {
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.fromLTRB(10, height*0.3, 10, 0),
+                    margin: EdgeInsets.fromLTRB(10, height*0.27, 10, 0),
                     child: ListTile(
                       title: Text("Log Out",textAlign: TextAlign.center,),
-                      trailing: Icon(Icons.logout,color: Colors.black,),
+                      leading: Icon(Icons.logout,color: isdark ? Colors.white : Colors.black,),
                       onTap: ()async {
                         await logindata!.clear();
                         await FirebaseMessaging.instance.unsubscribeFromTopic(studentModel.busno.toString());

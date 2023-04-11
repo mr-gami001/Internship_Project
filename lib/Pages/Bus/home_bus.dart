@@ -42,7 +42,7 @@ class _home_BusState extends State<home_Bus> {
 
   GoogleMapController? _controller;
   LatLng? currentlocation;
-  Icon startlocationicon = Icon(Icons.location_on_sharp,color: Colors.black,);
+  Icon startlocationicon = Icon(Icons.location_on_sharp,);
 
 
 
@@ -88,7 +88,7 @@ class _home_BusState extends State<home_Bus> {
                   ),
 
                   Divider(
-                    color: Colors.black54,
+                  color: isdark ? Colors.white54 : Colors.black54,
                     thickness: 1,
                     indent: 10,
                     endIndent: 10,
@@ -101,7 +101,7 @@ class _home_BusState extends State<home_Bus> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/bus.png'),
+                      leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/bus.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("Bus No.: " +snapshot.data!.busno.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
@@ -113,7 +113,7 @@ class _home_BusState extends State<home_Bus> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png'),
+                      leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png',color: isdark ? Colors.white : Colors.black),
                       title: Text("User Id : "+snapshot.data!.userid.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
@@ -126,7 +126,7 @@ class _home_BusState extends State<home_Bus> {
                     ),
                     child: ListTile(
                       title: Text("Log Out",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
-                      trailing: Icon(Icons.logout,color: Colors.black,),
+                      leading: Icon(Icons.logout,color: isdark ? Colors.white : Colors.black,),
                       onTap: ()async {
                         await logindata.clear();
                         await Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -247,7 +247,7 @@ class _home_BusState extends State<home_Bus> {
                       // print("Start : "+check.toString());
                       // }
                       sharing = 'Stop Sharing Location';
-                      startlocationicon = Icon(Icons.location_off_sharp,color: Colors.black,);
+                      startlocationicon = Icon(Icons.location_off_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Started', 'Bus No. : ${bususerid.toString()} Started');
                       notificationServices.sendnotification('Bus Started', 'Bus No. : ${bususerid.toString()} Started', bususerid!);
                       notificationServices.sendnotification('Bus Started', 'Bus No. : ${bususerid.toString()} Started', 'Institute');
@@ -260,7 +260,7 @@ class _home_BusState extends State<home_Bus> {
                       timer?.cancel();
                       print('Stop : '+stop.toString());
                       sharing = 'Start Sharing Location';
-                      startlocationicon = Icon(Icons.location_on_sharp,color: Colors.black,);
+                      startlocationicon = Icon(Icons.location_on_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped');
                       notificationServices.sendnotification('Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped', bususerid!);
                       notificationServices.sendnotification('Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped', 'Institute');
@@ -279,6 +279,7 @@ class _home_BusState extends State<home_Bus> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ListTile(
+                leading: Image.network('https://img.icons8.com/external-outlines-amoghdesign/27/000000/external-breakdown-car-maintenance-and-service-outlines-amoghdesign.png',color: isdark ? Colors.white : Colors.black,scale: 0.8,),
                 title: Text("Break Down",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{

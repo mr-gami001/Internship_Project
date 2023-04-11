@@ -11,6 +11,9 @@ class Theme_Help{
         primaryColor: Colors.greenAccent,
         primarySwatch: Colors.deepPurple,
         brightness: Brightness.light,
+      iconTheme: IconThemeData(
+        color: Colors.black
+      )
     );
   }
 
@@ -19,7 +22,9 @@ class Theme_Help{
         brightness: Brightness.dark,
         primarySwatch: Colors.red,
         primaryColor: Colors.white,
-
+        iconTheme: IconThemeData(
+            color: Colors.white
+        )
     );
   }
 

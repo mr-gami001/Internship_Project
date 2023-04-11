@@ -98,11 +98,9 @@ class _addbusState extends State<addbus> {
             ),
 
             Container(
+              height: MediaQuery.of(context).size.height*0.075,
+              width: MediaQuery.of(context).size.width*0.5,
               margin: EdgeInsets.fromLTRB(20, 20, 20, 0 ),
-              decoration: BoxDecoration(
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.circular(10),
-              ),
 
               child: ElevatedButton(
                 child: elevatedbutton,

@@ -205,10 +205,8 @@ class _addparentsState extends State<addparents> {
               },
 
               child: Text('Save',style: TextStyle(color: Colors.white,fontSize: 20),),),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.deepPurple,
-            ),
+            height: MediaQuery.of(context).size.height*0.075,
+            width: MediaQuery.of(context).size.width*0.5,
           ),
 
         ],

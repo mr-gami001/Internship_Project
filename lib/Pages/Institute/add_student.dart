@@ -127,15 +127,11 @@ class _addstudentState extends State<addstudent> {
               ),
 
               Container(
-                width: MediaQuery.of(context).size.width*0.4,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
+                height: MediaQuery.of(context).size.height*0.075,
+                width: MediaQuery.of(context).size.width*0.45,
                 margin: EdgeInsets.all(20),
-                child: TextButton(
-                  child: Text('Save',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                child: ElevatedButton(
+                  child: Text('Save',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   onPressed: ()async{
                     var check = await stud.addstudentdata(name.text, userid.text, dropdownvalue!);
                     

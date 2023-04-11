@@ -80,9 +80,14 @@ class _busState extends State<bus> {
 
 
                       child: ListTile(
-                        title: Text("Bus No : ${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
-                        subtitle: Text('Press For Track Location',textAlign: TextAlign.center,),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        title: Text("Bus No : ${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.start,),
+                        subtitle: Text('Press For Track Location',textAlign: TextAlign.start,),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Bus UserId : \n"+items.userid.toString()),
+                          ],
+                        ),
                         onTap: ()async {
                           await Navigator.pushNamed(context,'/tracklocation',arguments: items.userid);
                         },

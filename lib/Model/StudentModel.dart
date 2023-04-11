@@ -4,17 +4,17 @@ class StudentModel{
   String? name;
   String? userid;
   int? busno;
-  String? password;
+  String? rollno;
 
   StudentModel(
       this.name,
       this.userid,
       this.busno,
-      this.password
+      this.rollno
       );
 
   factory StudentModel.fromJson(Map json){
-    return StudentModel(json['name'], json['userid'],json['busno'],json['password']);
+    return StudentModel(json['name'], json['userid'],json['busno'],json['rollno']);
   }
 
   toJson(){
@@ -22,6 +22,6 @@ class StudentModel{
     json['name'] = this.name;
     json['userid'] = this.userid;
     json['busno'] = this.busno;
-    json['password'] = this.password;
+    json['password'] = this.rollno;
   }
 }

@@ -40,7 +40,10 @@ class _addstudentState extends State<addstudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Add Student Data"),
+      ),
       body: SingleChildScrollView(
         child: BlocBuilder<StudentfetchbusdataBloc, BusState>(
       bloc: _studentfetchbusdataBloc,

@@ -26,6 +26,9 @@ class _studentState extends State<student> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
 
@@ -66,11 +69,15 @@ class _studentState extends State<student> {
                     color: Colors.black12,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.13,
                   child: ListTile(
-                    title: Text("Name : "+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                    subtitle: Text("User Id : "+stud.userid.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                    trailing: Text("Bus No : "+stud.busno.toString()),
+                    title: Text("Name : "+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.035),),
+                    subtitle: Text("User Id : "+stud.userid.toString()+"\nRoll No. : ${stud.rollno}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.025),),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                      Text("Bus No : \n"+stud.busno.toString()),
+                    ],),
                     onTap: ()async{
                       Navigator.pushNamed(context, '/UpdateStudent', arguments: stud.userid);
                     },

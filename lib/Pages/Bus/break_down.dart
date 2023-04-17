@@ -1,5 +1,6 @@
 
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:let_me_check/Model/NotificationModel.dart';
 import 'package:let_me_check/Services/busservice/Bus_breakdown.dart';
@@ -28,7 +29,7 @@ class _break_downState extends State<break_down> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Break Down'),
+        title: Text("Break_Down").tr(),
         centerTitle: true,
 
       ),
@@ -46,8 +47,8 @@ class _break_downState extends State<break_down> {
 
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "Enter title",
-                labelText: 'Title'
+                hintText: "Enter title".tr(),
+                labelText: "Title".tr()
               ),
             ),
           ),
@@ -61,7 +62,7 @@ class _break_downState extends State<break_down> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Description",
-                  labelText: 'Description'
+                  labelText: "Description"
               ),
             ),
           ),
@@ -78,7 +79,7 @@ class _break_downState extends State<break_down> {
                   await showDialog(context: context, builder: (context)=>AlertDialog(title: Text('Done'),icon: Icon(Icons.done_all),));
                 }
               },
-              child: Text("Send Message"),
+              child: Text("Send_Message").tr(),
             ),
           )
 

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,7 @@ class _parentsState extends State<parents> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Parents'),
+        title: Text("Parents").tr(),
 
 
         leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
@@ -68,9 +69,9 @@ class _parentsState extends State<parents> {
                     ),
                     height: MediaQuery.of(context).size.height * 0.1,
                     child: ListTile(
-                      title: Text("Name : "+paren.name.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: Text("User Id : "+paren.userid.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: Text("Student User Id : "+paren.studentuserid.toString()),
+                      title: Text("Name_:_".tr()+paren.name.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                      subtitle: Text("User_Id_:_".tr()+paren.userid.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                      trailing: Text("Student_User_Id_:_".tr()+paren.studentuserid.toString()),
                       onTap: (){
                         Navigator.pushNamed(context, '/UpdateParent',arguments: paren.userid);
                       },
@@ -86,7 +87,7 @@ class _parentsState extends State<parents> {
               return Container(
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                 child: Center(
-                  child: Text('Error Occure'),
+                  child: Text("Error").tr(),
                 ),
               );
             }

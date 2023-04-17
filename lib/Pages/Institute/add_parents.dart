@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Pages/Institute/parents.dart';
@@ -39,7 +40,7 @@ class _addparentsState extends State<addparents> {
 
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add Parents Data"),
+        title: Text("Add_Parents_Data").tr(),
       ),
 
       body: SingleChildScrollView(
@@ -68,8 +69,8 @@ class _addparentsState extends State<addparents> {
               child: TextField(
                 controller: name,
                 decoration: InputDecoration(
-                  hintText: "Enter Name",
-                  labelText: 'Name',
+                  hintText: "Enter_Name".tr(),
+                  labelText: "Name".tr(),
                   border: OutlineInputBorder(),
                 ),
               )
@@ -80,8 +81,8 @@ class _addparentsState extends State<addparents> {
               child: TextField(
                 controller: userid,
                 decoration: InputDecoration(
-                  hintText: "Enter UserId",
-                  labelText: 'userid',
+                  hintText: "Enter_User_Id".tr(),
+                  labelText: "User_Id".tr(),
                   border: OutlineInputBorder(),
                 ),
               )
@@ -112,7 +113,7 @@ class _addparentsState extends State<addparents> {
               children: [
 
                 Container(
-                  child: Text('Select Student :',style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text("Select_Student_:".tr(),style: TextStyle(fontWeight: FontWeight.bold),),
                 ),
 
                 Container(
@@ -142,8 +143,8 @@ class _addparentsState extends State<addparents> {
                 controller: pass,
                 obscureText: obsecuretext,
                 decoration: InputDecoration(
-                  hintText: "Enter Password",
-                  labelText: 'Password',
+                  hintText: "Enter_Password".tr(),
+                  labelText: "Password".tr(),
                   border: OutlineInputBorder(),
 
                   suffixIcon: IconButton(
@@ -178,7 +179,7 @@ class _addparentsState extends State<addparents> {
                   if(check == 'added'){
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.done),
-                      title: Text('Done'),
+                      title: Text("Done").tr(),
                     ));
                     await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>parents()));
                   }
@@ -186,7 +187,7 @@ class _addparentsState extends State<addparents> {
                   else if(check == 'student not found'){
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.no_accounts),
-                      title: Text('Invalid Student User Id'),
+                      title: Text("Invalid_Student_User_Id").tr(),
                     ));
                   }
 
@@ -194,7 +195,7 @@ class _addparentsState extends State<addparents> {
                   else{
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.error),
-                      title: Text('Error'),
+                      title: Text("Error").tr(),
                     ));
                   }
 
@@ -204,7 +205,7 @@ class _addparentsState extends State<addparents> {
                 }
               },
 
-              child: Text('Save',style: TextStyle(color: Colors.white,fontSize: 20),),),
+              child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontSize: 20),),),
             height: MediaQuery.of(context).size.height*0.075,
             width: MediaQuery.of(context).size.width*0.5,
           ),
@@ -216,7 +217,7 @@ class _addparentsState extends State<addparents> {
     }
 
     else{
-      return Text('error');
+      return Text("Error").tr();
     }
 
   },

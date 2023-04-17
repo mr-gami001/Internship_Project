@@ -1,6 +1,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -87,7 +88,7 @@ class _notificationhistoryState extends State<notificationhistory> {
                     color: Colors.black26,
                   ),
                   child: ListTile(
-                    title: Text(state.datamodel[index].title.toString(),style: TextStyle(fontSize: height*0.025),),
+                    title: Text(state.datamodel[index].title.toString(),style: TextStyle(fontSize: height*0.025),).tr(),
                     subtitle: Text(state.datamodel[index].discription.toString(),style: TextStyle(fontSize: height*0.025),),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -103,14 +104,14 @@ class _notificationhistoryState extends State<notificationhistory> {
           }
 
           else{
-            return Center(child: Container(child: Text('Error'),));
+            return Center(child: Container(child: Text("Error").tr(),));
           }
 
         },
       ),
 
       appBar: AppBar(
-        title: Text('Notification History'),
+        title: Text("Notification_History").tr(),
         centerTitle: true,
       ),
     );

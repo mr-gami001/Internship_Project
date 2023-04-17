@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +38,7 @@ class _busState extends State<bus> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Bus',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+        title: Text("Bus".tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
 
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -80,12 +81,12 @@ class _busState extends State<bus> {
 
 
                       child: ListTile(
-                        title: Text("Bus No : ${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.start,),
-                        subtitle: Text('Press For Track Location',textAlign: TextAlign.start,),
+                        title: Text("Bus_No.:_".tr()+"${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.start,),
+                        subtitle: Text("Press_For_Track_Location".tr(),textAlign: TextAlign.start,),
                         trailing: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Bus UserId : \n"+items.userid.toString()),
+                            Text("Bus_UserId_:_".tr()+"\n"+items.userid.toString()),
                           ],
                         ),
                         onTap: ()async {
@@ -108,7 +109,7 @@ class _busState extends State<bus> {
                     margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                     color: Colors.red,
                     alignment: Alignment.center,
-                    child: Text("Error !",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
+                    child: Text("Error".tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
                 ),
               );
             }
@@ -121,7 +122,7 @@ class _busState extends State<bus> {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                   color: Colors.red,
                   alignment: Alignment.center,
-                    child: Text("Error !",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
+                    child: Text("Error".tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
                 ),
               );
             }

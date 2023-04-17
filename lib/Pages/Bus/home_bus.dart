@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _home_BusState extends State<home_Bus> {
   Bus bus = Bus();
   Bus_breakdown bus_breakdown = Bus_breakdown();
 
-  String sharing = 'Start Sharing Location';
+
 
   Timer? timer;
 
@@ -64,6 +65,7 @@ class _home_BusState extends State<home_Bus> {
 
   @override
   Widget build(BuildContext context) {
+    String sharing =  "Start_Sharing_Location".tr();
 
     double height = MediaQuery.of(context).size.height;
     bool isdark = (Theme.of(context).brightness == Brightness.dark);
@@ -100,9 +102,23 @@ class _home_BusState extends State<home_Bus> {
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child:  ListTile(
+                      title: Text("Change_Theme".tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
+                      leading: isdark ? Icon(Icons.dark_mode_rounded,) : Icon(Icons.light_mode,color: Colors.black,),
+                      onTap: (){currentTheme.toggleTheme();
+                      },
+                    ),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.fromLTRB(10,10,10,0),
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: ListTile(
                       leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/bus.png',color: isdark ? Colors.white : Colors.black),
-                      title: Text("Bus No.: " +snapshot.data!.busno.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text("Bus_No.:_".tr() +snapshot.data!.busno.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
 
@@ -114,18 +130,18 @@ class _home_BusState extends State<home_Bus> {
                     ),
                     child: ListTile(
                       leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png',color: isdark ? Colors.white : Colors.black),
-                      title: Text("User Id : "+snapshot.data!.userid.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text("User_Id".tr()+" : ${snapshot.data!.userid.toString()}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
 
                   Container(
-                    margin: EdgeInsets.fromLTRB(10, height*0.45, 10, 0),
+                    margin: EdgeInsets.fromLTRB(10, height*0.35, 10, 0),
                     decoration: BoxDecoration(
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      title: Text("Log Out",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text("Log_Out".tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                       leading: Icon(Icons.logout,color: isdark ? Colors.white : Colors.black,),
                       onTap: ()async {
                         await logindata.clear();
@@ -151,17 +167,41 @@ class _home_BusState extends State<home_Bus> {
       ),
 
       appBar: AppBar(
-        title: Text('Home Bus'),
+        title: Text("Home_Bus").tr(),
         centerTitle: true,
 
         actions: [
           IconButton(onPressed: (){
             Navigator.of(context).pushNamed('/notificationhistory');
           }, icon: Icon(CupertinoIcons.bell_fill)),
+          
+          PopupMenuButton(
+              itemBuilder: (context)=>[
+                PopupMenuItem(
+                    child: Text("English"),
+                  onTap: (){
+                      context.setLocale(Locale("en","US"));
 
-            IconButton(onPressed: ()async{
-              currentTheme.toggleTheme();
-            }, icon: isdark ? Icon(Icons.dark_mode_rounded) : Icon(Icons.light_mode))
+                  },
+                ),
+
+                PopupMenuItem(
+                  child: Text("Hindi"),
+                  onTap: (){
+                    context.setLocale(Locale("hi","IN"));
+                  },
+                ),
+
+                PopupMenuItem(
+                  child: Text("Gujarati"),
+                  onTap: (){
+                    context.setLocale(Locale("gu","IN"));
+                  },
+                ),
+
+
+              ]
+          )
         ],
       ),
 
@@ -236,7 +276,7 @@ class _home_BusState extends State<home_Bus> {
                 onTap: (){
                   setState(()  {
 
-                    if(sharing.startsWith('Start')){
+                    if(sharing.startsWith("Start")){
 
                       timer = Timer.periodic(Duration(seconds: 3), (t) async {
                         lochistory = await bus.startsharingloc(bususerid!);
@@ -246,7 +286,7 @@ class _home_BusState extends State<home_Bus> {
                       // var check =  bus.startsharingloc(snapshot.data!.userid.toString());
                       // print("Start : "+check.toString());
                       // }
-                      sharing = 'Stop Sharing Location';
+                      sharing = "Stop_Sharing_Location".tr();
                       startlocationicon = Icon(Icons.location_off_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Started', 'Bus No. : ${bususerid.toString()} Started');
                       notificationServices.sendnotification('Bus Started', 'Bus No. : ${bususerid.toString()} Started', bususerid!);
@@ -259,7 +299,7 @@ class _home_BusState extends State<home_Bus> {
                       var stop = bus.stopsharingloc(bususerid!,lochistory!);
                       timer?.cancel();
                       print('Stop : '+stop.toString());
-                      sharing = 'Start Sharing Location';
+                      sharing = "Start_Sharing_Location".tr();
                       startlocationicon = Icon(Icons.location_on_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped');
                       notificationServices.sendnotification('Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped', bususerid!);
@@ -280,7 +320,7 @@ class _home_BusState extends State<home_Bus> {
               ),
               child: ListTile(
                 leading: Image.network('https://img.icons8.com/external-outlines-amoghdesign/27/000000/external-breakdown-car-maintenance-and-service-outlines-amoghdesign.png',color: isdark ? Colors.white : Colors.black,scale: 0.8,),
-                title: Text("Break Down",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                title: Text("Break_Down".tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{
                   await Navigator.pushNamed(context, '/breakdown', arguments: bususerid!);

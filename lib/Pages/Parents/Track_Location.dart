@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,6 @@ class tracklocation extends StatefulWidget {
 }
 
 class _tracklocationState extends State<tracklocation> {
-
   Bus _bus = Bus();
   Student _student = Student();
   GetBusLocationBloc _getBusLocationBloc = GetBusLocationBloc();
@@ -41,8 +41,6 @@ class _tracklocationState extends State<tracklocation> {
   //   super.initState();
   // }
 
-
-
   @override
   void didChangeDependencies() async {
     bususerid = await ModalRoute.of(context)?.settings.arguments;
@@ -56,9 +54,8 @@ class _tracklocationState extends State<tracklocation> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Track Bus Location'),
+        title: Text("Track_Bus_Location").tr(),
       ),
-
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -66,96 +63,91 @@ class _tracklocationState extends State<tracklocation> {
         child: BlocBuilder<GetBusLocationBloc, buslocationState>(
           bloc: _getBusLocationBloc,
           builder: (context, state) {
-
-            if(state is GetBusLocationState){
-              return Center(child: CircularProgressIndicator(),);
-            }
-
-            else if (state is permissiondenied){
-              return Center(child: Text('Location permission not Granted'),);
-            }
-
-            else if(state is BusLocationGainedState){
-                _timer = Timer(Duration(milliseconds: 10), () async{
-                  markerlocation = await _bus.getlocation(state.bususerid);
-                  _marker = setmarker(markerlocation!);
-                  initialpositon = setcameraposition(markerlocation!);
-                  _controller?.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(markerlocation!.latitude,markerlocation!.longitude),zoom: 16)));
-                  print("location ** ${markerlocation!.latitude}  ${markerlocation!.longitude}");
-                  setState(() {});
-                });
+            if (state is GetBusLocationState) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is permissiondenied) {
+              return Center(
+                child: Text("Location_permission_not_Granted".tr()),
+              );
+            } else if (state is BusLocationGainedState) {
+              _timer = Timer(Duration(milliseconds: 10), () async {
+                markerlocation = await _bus.getlocation(state.bususerid);
+                _marker = setmarker(markerlocation!);
+                initialpositon = setcameraposition(markerlocation!);
+                _controller?.moveCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                        target: LatLng(markerlocation!.latitude,
+                            markerlocation!.longitude),
+                        zoom: 16)));
+                print(
+                    "location ** ${markerlocation!.latitude}  ${markerlocation!.longitude}");
+                setState(() {});
+              });
               return SizedBox(
-                height: MediaQuery.of(context).size.height*0.8,
-                width: MediaQuery.of(context).size.width*0.9,
+                height: MediaQuery.of(context).size.height * 0.8,
+                width: MediaQuery.of(context).size.width * 0.9,
                 child: GoogleMap(
-                  onMapCreated: (GoogleMapController controller){
+                  onMapCreated: (GoogleMapController controller) {
                     setState(() {
                       _controller = controller;
                     });
                   },
                   initialCameraPosition: CameraPosition(
-                        target: LatLng(markerlocation!.latitude, markerlocation!.longitude),
-                        zoom: 14.8
-                  ),
+                      target: LatLng(
+                          markerlocation!.latitude, markerlocation!.longitude),
+                      zoom: 14.8),
                   myLocationEnabled: true,
                   myLocationButtonEnabled: true,
                   compassEnabled: true,
                   mapType: MapType.hybrid,
-
                   markers: _marker,
-
-
                 ),
               );
-            }
-
-            else if(state is BusLocationLossState){
+            } else if (state is BusLocationLossState) {
               return Center(child: Text(state.error!));
-            }
-
-            else{
-              return Text('Error');
+            } else {
+              return Text("Error").tr();
             }
           },
         ),
       ),
       floatingActionButton: Container(
-          padding:EdgeInsets.only(left:30),
-          alignment:Alignment.bottomRight,
+          padding: EdgeInsets.only(left: 30),
+          alignment: Alignment.bottomRight,
           child: FloatingActionButton(
-            onPressed: (){
-              _controller?.animateCamera(
-                CameraUpdate.newCameraPosition(
-                  CameraPosition(target: LatLng(markerlocation!.latitude, markerlocation!.longitude),zoom: 16)
-                )
-              );
+            onPressed: () {
+              _controller?.animateCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                      target: LatLng(
+                          markerlocation!.latitude, markerlocation!.longitude),
+                      zoom: 16)));
             },
             isExtended: true,
-            child: Icon(Icons.location_searching_outlined),)),
+            child: Icon(Icons.location_searching_outlined),
+          )),
     );
-
   }
 
-  setcameraposition(GeoPoint markerlocation){
+  setcameraposition(GeoPoint markerlocation) {
     CameraPosition cameraPosition = CameraPosition(
         target: LatLng(markerlocation.latitude, markerlocation.longitude),
-        zoom: 14.8
-    );
+        zoom: 14.8);
     return cameraPosition;
   }
 
-  setmarker(GeoPoint location){
+  setmarker(GeoPoint location) {
     Set<Marker> _marker = {};
-    _marker.add(
-      Marker(
-        markerId: MarkerId('Bus'),
-        icon: BitmapDescriptor.defaultMarker,
-        infoWindow: InfoWindow(title: 'Bus Location'),
-        position: LatLng(location.latitude, location.longitude),
-      )
-    );
+    _marker.add(Marker(
+      markerId: MarkerId('Bus'),
+      icon: BitmapDescriptor.defaultMarker,
+      infoWindow: InfoWindow(title: 'Bus Location'),
+      position: LatLng(location.latitude, location.longitude),
+    ));
     return _marker;
   }
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -163,5 +155,4 @@ class _tracklocationState extends State<tracklocation> {
     // TODO: implement dispose
     super.dispose();
   }
-
 }

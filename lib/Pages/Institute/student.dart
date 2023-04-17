@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class _studentState extends State<student> {
       appBar: AppBar(
 
         centerTitle: true,
-        title: Text('Student Section'),
+        title: Text("Student_Section"),
 
         leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
           Navigator.popAndPushNamed(context, '/homeinst');
@@ -71,12 +72,12 @@ class _studentState extends State<student> {
                   ),
                   height: MediaQuery.of(context).size.height * 0.13,
                   child: ListTile(
-                    title: Text("Name : "+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.035),),
-                    subtitle: Text("User Id : "+stud.userid.toString()+"\nRoll No. : ${stud.rollno}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.025),),
+                    title: Text("Name_:_".tr()+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.035),),
+                    subtitle: Text("User_Id_:_".tr()+stud.userid.toString()+"\nRoll No. : ${stud.rollno}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.025),),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      Text("Bus No : \n"+stud.busno.toString()),
+                      Text("Bus_No.:_".tr()+"\n"+stud.busno.toString()),
                     ],),
                     onTap: ()async{
                       Navigator.pushNamed(context, '/UpdateStudent', arguments: stud.userid);
@@ -93,7 +94,7 @@ class _studentState extends State<student> {
             return Container(
               margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
               child: Center(
-                child: Text('Error Occure'),
+                child: Text("Error").tr(),
               ),
             );
           }

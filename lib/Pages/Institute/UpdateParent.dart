@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _UpdateParentState extends State<UpdateParent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Update Student Data"),
+        title: Text("Update_Student_Data").tr(),
       ),
 
       body: BlocBuilder(
@@ -61,9 +62,9 @@ class _UpdateParentState extends State<UpdateParent> {
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                         controller: name,
-                        decoration: const InputDecoration(
-                            hintText: 'Enter Name',
-                            labelText: 'Name',
+                        decoration: InputDecoration(
+                            hintText: "Enter_Name".tr(),
+                            labelText: "Name".tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -74,9 +75,9 @@ class _UpdateParentState extends State<UpdateParent> {
                       child: TextField(
                         enabled: false,
                         controller: userid,
-                        decoration: const InputDecoration(
-                            hintText: 'Enter UserId',
-                            labelText: 'UserId',
+                        decoration: InputDecoration(
+                            hintText: "Enter_User_Id".tr(),
+                            labelText: "User_Id".tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -87,9 +88,9 @@ class _UpdateParentState extends State<UpdateParent> {
                       child: TextField(
                         enabled: false,
                         controller: studentuserid,
-                        decoration: const InputDecoration(
-                            hintText: 'Enter Student User Id :',
-                            labelText: 'Student UserId',
+                        decoration: InputDecoration(
+                            hintText: "Enter_Student_User_Id_".tr(),
+                            labelText: "Student_UserId".tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -99,9 +100,9 @@ class _UpdateParentState extends State<UpdateParent> {
                       margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextField(
                         controller: password,
-                        decoration: const InputDecoration(
-                            hintText: 'Enter Password',
-                            labelText: 'Password',
+                        decoration: InputDecoration(
+                            hintText: "Enter_Password".tr(),
+                            labelText: "Password".tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -116,7 +117,7 @@ class _UpdateParentState extends State<UpdateParent> {
                       ),
                       margin: EdgeInsets.all(20),
                       child: TextButton(
-                        child: Text('Save',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                        child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                         onPressed: ()async{
 
                           var check = await parents.Updatestudentdata(name.text, userid.text, studentuserid.text, password.text);
@@ -124,7 +125,7 @@ class _UpdateParentState extends State<UpdateParent> {
                           if(check == 'Added'){
                             await showDialog(context: context, builder: (context)=>AlertDialog(
                               icon: Icon(CupertinoIcons.person_add_solid),
-                              title: Text('Data Added !'),
+                              title: Text("Data_Added").tr(),
                             ));
                             await Navigator.pushNamed(context, '/parents');
                           }
@@ -145,7 +146,7 @@ class _UpdateParentState extends State<UpdateParent> {
           }
 
           else{
-            return Center(child: Text('errror'),);
+            return Center(child: Text('Error').tr(),);
           }
         },
       ),

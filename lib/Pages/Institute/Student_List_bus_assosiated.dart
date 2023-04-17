@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,7 @@ class _studentListByBusState extends State<studentListByBus> {
     return Scaffold(
       
       appBar:  AppBar(
-        title: Text("Student List"),
+        title: Text("Student_List").tr(),
         centerTitle: true,
         
         actions: [
@@ -61,7 +62,7 @@ class _studentListByBusState extends State<studentListByBus> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    title: Text("Name : ${items.name.toString()}",textAlign: TextAlign.center,
+                    title: Text("Name_:_".tr()+"${items.name.toString()}",textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 25,
@@ -77,12 +78,12 @@ class _studentListByBusState extends State<studentListByBus> {
 
           else if(state is NullDataState){
             return Center(
-              child: Text("No Data Found!", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w900),),
+              child: Text("No_Data_Found!", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w900),),
             );
           }
           
           else{
-            return Center(child: Text("Error"),);
+            return Center(child: Text("Error").tr(),);
           }
         },
       ),

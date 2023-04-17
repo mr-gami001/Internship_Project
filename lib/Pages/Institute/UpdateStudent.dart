@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +41,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Update Student Data"),
+        title: Text("Update_Student_Data").tr(),
       ),
 
       body: BlocBuilder(
@@ -64,22 +65,22 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: TextField(
                       controller: name,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter Name',
-                          labelText: 'Name',
+                      decoration: InputDecoration(
+                          hintText: "Enter_Name".tr(),
+                          labelText: "Name".tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
                   ),
 
                   Container(
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: TextField(
                       enabled: false,
                       controller: userid,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter UserId',
-                          labelText: 'UserId',
+                      decoration: InputDecoration(
+                          hintText: "Enter_User_Id".tr(),
+                          labelText: "User_Id".tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
@@ -89,9 +90,9 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: TextField(
                       controller: busno,
-                      decoration: const InputDecoration(
-                          hintText: 'Enter Bus No.',
-                          labelText: 'Bus No.',
+                      decoration: InputDecoration(
+                          hintText: "Enter_Bus_No.".tr(),
+                          labelText: "Bus_No.".tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
@@ -106,7 +107,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     ),
                     margin: EdgeInsets.all(20),
                     child: TextButton(
-                      child: Text('Save',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                      child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                       onPressed: ()async{
 
                         var check = await student.Updatestudentdata(name.text, userid.text, int.parse(busno.text));
@@ -114,7 +115,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
                         if(check == 'Added'){
                           await showDialog(context: context, builder: (context)=>AlertDialog(
                             icon: Icon(CupertinoIcons.person_add_solid),
-                            title: Text('Data Added !'),
+                            title: Text("Data_Added").tr(),
                           ));
                           await Navigator.pushNamed(context, '/student');
                         }
@@ -134,7 +135,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
           }
 
           else{
-            return Center(child: Text('errror'),);
+            return Center(child: Text("Error").tr(),);
           }
         },
       ),

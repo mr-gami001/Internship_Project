@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,7 @@ class _addstudentState extends State<addstudent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add Student Data"),
+        title: Text("Add_Student_Data").tr(),
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<StudentfetchbusdataBloc, BusState>(
@@ -60,9 +61,9 @@ class _addstudentState extends State<addstudent> {
                 margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextField(
                   controller: name,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter Name',
-                    labelText: 'Name',
+                  decoration: InputDecoration(
+                    hintText: "Enter_Name".tr(),
+                    labelText: "Name".tr(),
                     border: OutlineInputBorder()
                   ),
                 ),
@@ -72,9 +73,9 @@ class _addstudentState extends State<addstudent> {
                 margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextField(
                   controller: userid,
-                  decoration: const InputDecoration(
-                      hintText: 'Enter UserId',
-                      labelText: 'UserId',
+                  decoration: InputDecoration(
+                      hintText: "Enter_User_Id".tr(),
+                      labelText: "User_Id".tr(),
                       border: OutlineInputBorder()
                   ),
                 ),
@@ -104,7 +105,7 @@ class _addstudentState extends State<addstudent> {
                   children: [
 
                     Container(
-                      child: const Text('Enter Bus No. :',style: TextStyle(fontWeight: FontWeight.bold),),
+                      child: Text("Enter_Bus_No.".tr(),style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
 
                     Container(
@@ -131,14 +132,14 @@ class _addstudentState extends State<addstudent> {
                 width: MediaQuery.of(context).size.width*0.45,
                 margin: EdgeInsets.all(20),
                 child: ElevatedButton(
-                  child: Text('Save',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  child: Text("Save".tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   onPressed: ()async{
                     var check = await stud.addstudentdata(name.text, userid.text, dropdownvalue!);
                     
                     if(check == 'Added'){
                       await showDialog(context: context, builder: (context)=>AlertDialog(
                         icon: Icon(CupertinoIcons.person_add_solid),
-                        title: Text('Data Added !'),
+                        title: Text("Data_Added").tr(),
                       ));
                       await Navigator.pushNamed(context, '/student');
                     }
@@ -146,7 +147,7 @@ class _addstudentState extends State<addstudent> {
                     else if (check == 'Already'){
                       await showDialog(context: context, builder: (context)=>AlertDialog(
                         icon: Icon(Icons.account_circle),
-                        title: Text("User Already Exists"),
+                        title: Text("User_Already_Exists"),
                       ));
                     }
                     else{
@@ -163,7 +164,7 @@ class _addstudentState extends State<addstudent> {
 
         else{
           return Center(
-            child: Text('data'),
+            child: Text("Error").tr(),
           );
         }
       },

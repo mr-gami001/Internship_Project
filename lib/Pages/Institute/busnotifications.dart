@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +31,8 @@ class _busnotificationsState extends State<busnotifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bus Notification'),
+        title: Text("Bus_Notification").tr(),
+        centerTitle: true,
       ),
 
       body: BlocBuilder(
@@ -51,7 +53,7 @@ class _busnotificationsState extends State<busnotifications> {
                 color: Colors.black12,
               ),
               child: ListTile(
-                title: Text(notification.title.toString()),
+                title: Text(notification.title.toString()).tr(),
                 subtitle: Text(notification.discription.toString()),
                 trailing: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -69,11 +71,11 @@ class _busnotificationsState extends State<busnotifications> {
           }
 
           else if (state is DataLossState){
-            return Center(child: Text('Error'),);
+            return Center(child: Text('Error').tr(),);
           }
 
           else{
-            return Center(child: Text('Error'),);
+            return Center(child: Text('Error').tr(),);
           }
         },
       ),

@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:let_me_check/Pages/Bus/break_down.dart';
 import 'package:let_me_check/Pages/Bus/home_bus.dart';
 import 'package:let_me_check/Pages/Bus/notificationhistory.dart';
@@ -16,7 +15,6 @@ import 'package:let_me_check/Pages/Parents/Track_Location.dart';
 import 'package:let_me_check/Pages/Parents/home_Parents.dart';
 import 'package:let_me_check/splash.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/Institute/Student_List_bus_assosiated.dart';
 import 'Pages/Institute/UpdateStudent.dart';
@@ -28,12 +26,15 @@ import 'firebase_options.dart';
 import 'login.dart';
 import 'package:camera/camera.dart';
 import 'Helper/Theme_Helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Theme_Help theme = Theme_Help();
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
   List<CameraDescription> cameras = await availableCameras();
 
   await Permission.location.request();
@@ -52,8 +53,20 @@ Future<void> main() async {
     provisional: true
   );
 
+  //initialize the easy localization service
+  EasyLocalization.ensureInitialized();
+
   runApp(
-   myApp()
+    EasyLocalization(
+        child: myApp(),
+        fallbackLocale: Locale('en','US'),
+        supportedLocales: [
+          Locale('en','US'),
+          Locale('hi','IN'),
+          Locale('gu','IN')
+        ],
+        path: 'assets/translations'
+    )
   );
 }
 
@@ -95,8 +108,11 @@ class _myAppState extends State<myApp> {
       themeMode: currentTheme.currentTheme,
       theme: theme.light_theme(),
       darkTheme: theme.dark_theme(),
-
       debugShowCheckedModeBanner: false,
+
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
 
       // home: AnimatedSplashScreen(
       //   splashTransition: SplashTransition.scaleTransition,

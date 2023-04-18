@@ -1,15 +1,10 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:let_me_check/Pages/Institute/home_Institute.dart';
-import 'package:let_me_check/Pages/Parents/home_Parents.dart';
+
 import 'package:let_me_check/Services/loginservice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'Pages/Student/home_Student.dart';
 
 const List<String> list = <String>["Institute", "Parents", "Bus"];
 
@@ -169,6 +164,8 @@ class _loginState extends State<login> {
             }).toList(),
           ),
         ),
+
+
         Container(
           height: MediaQuery.of(context).size.height * 0.07,
           width: MediaQuery.of(context).size.width * 0.3,

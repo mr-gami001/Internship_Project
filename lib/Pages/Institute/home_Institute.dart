@@ -217,30 +217,42 @@ class _home_instituteState extends State<home_institute> {
 
         actions: [
           PopupMenuButton(
-              itemBuilder: (context)=>[
-                PopupMenuItem(
-                  child: Text("English"),
-                  onTap: (){
-                    context.setLocale(Locale("en","US"));
-                  },
-                ),
+            position: PopupMenuPosition.under,
+            itemBuilder: (context)=>[
 
-                PopupMenuItem(
-                  child: Text("Hindi"),
-                  onTap: (){
-                    context.setLocale(Locale("hi","IN"));
-                  },
-                ),
+              PopupMenuItem(
+                  child: PopupMenuButton(
+                      position: PopupMenuPosition.under,
+                      child: ListTile(
+                        title: Text("Language",style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.020),),
+                        trailing: Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                      itemBuilder: (context)=>[
+                        PopupMenuItem(
+                          child: Text("English"),
+                          onTap: (){
+                            context.setLocale(Locale("en","US"));
+                          },
+                        ),
 
-                PopupMenuItem(
-                  child: Text("Gujarati"),
-                  onTap: (){
-                    context.setLocale(Locale("gu","IN"));
-                  },
-                ),
+                        PopupMenuItem(
+                          child: Text("Hindi"),
+                          onTap: (){
+                            context.setLocale(Locale("hi","IN"));
+                          },
+                        ),
+
+                        PopupMenuItem(
+                          child: Text("Gujarati"),
+                          onTap: (){
+                            context.setLocale(Locale("gu","IN"));
+                          },
+                        ),
 
 
-              ]
+                      ]
+                  ))
+            ],
           )
         ],
       ),

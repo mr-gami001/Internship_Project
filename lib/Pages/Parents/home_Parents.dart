@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
@@ -264,30 +265,42 @@ class _home_ParentsState extends State<home_Parents> {
 
         actions: [
           PopupMenuButton(
-              itemBuilder: (context)=>[
-                PopupMenuItem(
-                  child: Text("English"),
-                  onTap: (){
-                    context.setLocale(Locale("en","US"));
-                  },
-                ),
+            position: PopupMenuPosition.under,
+            itemBuilder: (context)=>[
 
-                PopupMenuItem(
-                  child: Text("Hindi"),
-                  onTap: (){
-                    context.setLocale(Locale("hi","IN"));
-                  },
-                ),
+              PopupMenuItem(
+                  child: PopupMenuButton(
+                      position: PopupMenuPosition.under,
+                    child: ListTile(
+                      title: Text("Language",style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.020),),
+                      trailing: Icon(Icons.arrow_forward_ios_sharp),
+                    ),
+                  itemBuilder: (context)=>[
+                    PopupMenuItem(
+                      child: Text("English"),
+                      onTap: (){
+                        context.setLocale(Locale("en","US"));
+                      },
+                    ),
 
-                PopupMenuItem(
-                  child: Text("Gujarati"),
-                  onTap: (){
-                    context.setLocale(Locale("gu","IN"));
-                  },
-                ),
+                    PopupMenuItem(
+                      child: Text("Hindi"),
+                      onTap: (){
+                        context.setLocale(Locale("hi","IN"));
+                      },
+                    ),
+
+                    PopupMenuItem(
+                      child: Text("Gujarati"),
+                      onTap: (){
+                        context.setLocale(Locale("gu","IN"));
+                      },
+                    ),
 
 
-              ]
+                  ]
+              ))
+            ],
           )
         ],
       ),

@@ -8,9 +8,7 @@ import 'package:let_me_check/Helper/Theme_Helper.dart';
 import 'package:let_me_check/Model/BusModel.dart';
 import 'package:let_me_check/Services/notificationservices.dart';
 import 'package:let_me_check/bloc/Institute_bloc/home_insstBloc.dart';
-import 'package:let_me_check/login.dart';
-import 'package:let_me_check/main.dart';
-import 'package:restart_app/restart_app.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Services/loginservice.dart';
@@ -183,7 +181,7 @@ class _home_instituteState extends State<home_institute> {
                     await FirebaseMessaging.instance
                         .unsubscribeFromTopic('Institute');
                     await Navigator.pushNamedAndRemoveUntil(
-                        context, '/login', (route) => false);
+                        context, '/', (route) => false);
                   },
                   leading: Icon(Icons.logout,
                       color: isdark ? Colors.white : Colors.black),
@@ -236,14 +234,14 @@ class _home_instituteState extends State<home_institute> {
                         ),
 
                         PopupMenuItem(
-                          child: Text("Hindi"),
+                          child: Text("हिंदी"),
                           onTap: (){
                             context.setLocale(Locale("hi","IN"));
                           },
                         ),
 
                         PopupMenuItem(
-                          child: Text("Gujarati"),
+                          child: Text("ગુજરાતી"),
                           onTap: (){
                             context.setLocale(Locale("gu","IN"));
                           },
@@ -314,6 +312,6 @@ class _home_instituteState extends State<home_institute> {
   }
 }
 
-Future _messageHandler(RemoteMessage message) async {
-  print('background message ${message.notification!.body}');
-}
+// Future _messageHandler(RemoteMessage message) async {
+//   print('background message ${message.notification!.body}');
+// }

@@ -221,7 +221,7 @@ class _home_ParentsState extends State<home_Parents> {
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.fromLTRB(10, height * 0.27, 10, 0),
+                    margin: EdgeInsets.fromLTRB(10, height * 0.2, 10, 0),
                     child: ListTile(
                       title: Text(
                         "Log_Out".tr(),
@@ -236,7 +236,7 @@ class _home_ParentsState extends State<home_Parents> {
                         await FirebaseMessaging.instance.unsubscribeFromTopic(
                             studentModel.busno.toString());
                         await Navigator.pushNamedAndRemoveUntil(
-                            context, '/login', (route) => false);
+                            context, '/', (route) => false);
                       },
                     ),
                   ),
@@ -284,14 +284,14 @@ class _home_ParentsState extends State<home_Parents> {
                     ),
 
                     PopupMenuItem(
-                      child: Text("Hindi"),
+                      child: Text("हिंदी"),
                       onTap: (){
                         context.setLocale(Locale("hi","IN"));
                       },
                     ),
 
                     PopupMenuItem(
-                      child: Text("Gujarati"),
+                      child: Text("ગુજરાતી"),
                       onTap: (){
                         context.setLocale(Locale("gu","IN"));
                       },

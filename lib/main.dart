@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:let_me_check/Pages/Bus/break_down.dart';
@@ -13,7 +14,6 @@ import 'package:let_me_check/Pages/Institute/parents.dart';
 import 'package:let_me_check/Pages/Institute/student.dart';
 import 'package:let_me_check/Pages/Parents/Track_Location.dart';
 import 'package:let_me_check/Pages/Parents/home_Parents.dart';
-import 'package:let_me_check/splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/Institute/Student_List_bus_assosiated.dart';
@@ -24,7 +24,6 @@ import 'Pages/Institute/busnotifications.dart';
 import 'Pages/Student/home_Student.dart';
 import 'firebase_options.dart';
 import 'login.dart';
-import 'package:camera/camera.dart';
 import 'Helper/Theme_Helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -35,7 +34,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
 
-  List<CameraDescription> cameras = await availableCameras();
 
   await Permission.location.request();
   await Permission.notification.request();
@@ -43,6 +41,10 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
   await FirebaseMessaging.instance.requestPermission(
     alert: true,
     announcement: true,
@@ -125,9 +127,8 @@ class _myAppState extends State<myApp> {
       // ),
 
       routes: {
-        '/' : (context) => splash(),
 
-        '/login': (context) => login(),
+        '/': (context) => login(),
         '/forgetpass' : (context) => forgetpass(),
         '/homeinst': (context) => home_institute(),
 

@@ -14,6 +14,8 @@ import 'package:let_me_check/Services/loginservice.dart';
 import 'package:let_me_check/bloc/bus_bloc/notification_history.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../string_constant.dart';
+
 class notificationhistory extends StatefulWidget {
   const notificationhistory({Key? key}) : super(key: key);
 
@@ -89,7 +91,7 @@ class _notificationhistoryState extends State<notificationhistory> {
                   ),
                   child: ListTile(
                     title: Text(state.datamodel[index].title.toString(),style: TextStyle(fontSize: height*0.025),).tr(),
-                    subtitle: Text(state.datamodel[index].discription.toString(),style: TextStyle(fontSize: height*0.025),),
+                    subtitle: Text(state.datamodel[index].discription.toString(),style: TextStyle(fontSize: height*0.025),).tr(),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -104,14 +106,14 @@ class _notificationhistoryState extends State<notificationhistory> {
           }
 
           else{
-            return Center(child: Container(child: Text("Error").tr(),));
+            return Center(child: Container(child: Text(StringConstant.Error).tr(),));
           }
 
         },
       ),
 
       appBar: AppBar(
-        title: Text("Notification_History").tr(),
+        title: Text(StringConstant.Notification_History).tr(),
         centerTitle: true,
       ),
     );

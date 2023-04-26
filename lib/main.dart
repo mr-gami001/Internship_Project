@@ -1,6 +1,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Pages/Bus/break_down.dart';
 import 'package:let_me_check/Pages/Bus/home_bus.dart';
 import 'package:let_me_check/Pages/Bus/notificationhistory.dart';
@@ -34,10 +35,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
 
-
-  await Permission.location.request();
-  await Permission.notification.request();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -46,29 +43,29 @@ Future<void> main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: true,
-    badge: true,
-    sound: true,
-    criticalAlert: true,
-    carPlay: true,
-    provisional: true
+      alert: true,
+      announcement: true,
+      badge: true,
+      sound: true,
+      criticalAlert: true,
+      carPlay: true,
+      provisional: true
   );
 
   //initialize the easy localization service
   EasyLocalization.ensureInitialized();
 
   runApp(
-    EasyLocalization(
-        child: myApp(),
-        fallbackLocale: Locale('en','US'),
-        supportedLocales: [
-          Locale('en','US'),
-          Locale('hi','IN'),
-          Locale('gu','IN')
-        ],
-        path: 'assets/translations'
-    )
+      EasyLocalization(
+          child: myApp(),
+          fallbackLocale: Locale('en', 'US'),
+          supportedLocales: [
+            Locale('en', 'US'),
+            Locale('hi', 'IN'),
+            Locale('gu', 'IN')
+          ],
+          path: 'assets/translations'
+      )
   );
 }
 
@@ -83,11 +80,10 @@ class myApp extends StatefulWidget {
 class _myAppState extends State<myApp> {
 
 
-
-  set()async{
+  set() async {
     SharedPreferences log = await SharedPreferences.getInstance();
-    if(log.containsKey('theme')){
-      if(log.getString('theme') == 'dark'){
+    if (log.containsKey('theme')) {
+      if (log.getString('theme') == 'dark') {
         print('0000000000000000000');
         currentTheme.toggleTheme();
       }
@@ -104,6 +100,13 @@ class _myAppState extends State<myApp> {
   }
 
   @override
+  void didChangeDependencies() async {
+    await Permission.location.request();
+    await Permission.notification.request();
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       themeAnimationDuration: Duration(seconds: 5),
@@ -116,30 +119,21 @@ class _myAppState extends State<myApp> {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
 
-      // home: AnimatedSplashScreen(
-      //   splashTransition: SplashTransition.scaleTransition,
-      //   splashIconSize: 70,
-      //   duration: 2500,
-      //   splash: Image.asset('android/app/src/main/res/drawable/logo.jpg',height: 40,fit: BoxFit.fitHeight,),
-      //   nextScreen: login(),
-      //
-      //
-      // ),
 
       routes: {
 
         '/': (context) => login(),
-        '/forgetpass' : (context) => forgetpass(),
+        '/forgetpass': (context) => forgetpass(),
         '/homeinst': (context) => home_institute(),
 
 
-        '/homestudent' : (context)=>home_Student(),
-        '/homeparents' : (context)=>home_Parents(),
-        '/homebus' : (context)=>home_Bus(),
+        '/homestudent': (context) => home_Student(),
+        '/homeparents': (context) => home_Parents(),
+        '/homebus': (context) => home_Bus(),
 
 
-        '/student' : (context)=>student(),
-        '/parents' : (context) => parents(),
+        '/student': (context) => student(),
+        '/parents': (context) => parents(),
         '/bus': (context) => bus(),
 
 
@@ -147,16 +141,16 @@ class _myAppState extends State<myApp> {
         '/addparents': (context) => addparents(),
         '/addbus': (context) => addbus(),
 
-        '/tracklocation' : (context) => tracklocation(),
+        '/tracklocation': (context) => tracklocation(),
 
 
-        '/breakdown' : (context) => break_down(),
-        '/notificationhistory' : (context) => notificationhistory(),
-        '/busnotifications' : (context) => busnotifications(),
+        '/breakdown': (context) => break_down(),
+        '/notificationhistory': (context) => notificationhistory(),
+        '/busnotifications': (context) => busnotifications(),
 
-        '/studentlsitbusassosiated' : (context) => studentListByBus(),
-        '/UpdateStudent' : (context) => UpdateStudent(),
-        '/UpdateParent' : (context) => UpdateParent(),
+        '/studentlsitbusassosiated': (context) => studentListByBus(),
+        '/UpdateStudent': (context) => UpdateStudent(),
+        '/UpdateParent': (context) => UpdateParent(),
       },
     );
   }

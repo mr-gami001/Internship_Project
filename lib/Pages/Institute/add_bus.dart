@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:let_me_check/Services/institute/bus.dart';
 import 'package:let_me_check/bloc/Institute_bloc/add_bus_data.dart';
 
+import '../../string_constant.dart';
+
 class addbus extends StatefulWidget {
   const addbus({Key? key}) : super(key: key);
 
@@ -22,7 +24,7 @@ class _addbusState extends State<addbus> {
   Bus bus = Bus();
 
   Widget elevatedbutton = Text(
-    "Add_Data".tr(),
+    StringConstant.Add_Data.tr(),
     style: TextStyle(color: Colors.black),
   );
 
@@ -31,7 +33,7 @@ class _addbusState extends State<addbus> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add_Bus_Data").tr(),
+        title: Text(StringConstant.Add_Bus_Data).tr(),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -42,8 +44,8 @@ class _addbusState extends State<addbus> {
                 controller: busno,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelText: "Bus_No".tr(),
-                  hintText: "Enter_Bus_No.".tr(),
+                  labelText: StringConstant.Bus_No.tr(),
+                  hintText: StringConstant.Enter_Bus_No.tr(),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -53,8 +55,8 @@ class _addbusState extends State<addbus> {
               child: TextField(
                 controller: UserId,
                 decoration: InputDecoration(
-                    labelText: "User_Id".tr(),
-                    hintText: "Enter_Bus_User_Id".tr(),
+                    labelText: StringConstant.UserId.tr(),
+                    hintText: StringConstant.Enter_Bus_User_Id.tr(),
                     border: OutlineInputBorder()),
               ),
             ),
@@ -78,8 +80,8 @@ class _addbusState extends State<addbus> {
                         });
                       },
                     ),
-                    labelText: "Password".tr(),
-                    hintText: "Enter_Password".tr(),
+                    labelText: StringConstant.Password.tr(),
+                    hintText: StringConstant.EnterPassword.tr(),
                     border: OutlineInputBorder()),
               ),
             ),
@@ -96,7 +98,7 @@ class _addbusState extends State<addbus> {
                     await showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text("Fill_the_data_!!").tr(),
+                              title: Text(StringConstant.Fill_the_data).tr(),
                               icon: Icon(Icons.add_alert),
                             ));
                   } else {
@@ -107,14 +109,14 @@ class _addbusState extends State<addbus> {
                       await showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: Text("Data Added").tr(),
+                                title: Text(StringConstant.Data_Added).tr(),
                                 icon: Icon(CupertinoIcons.person_add_solid),
                               ));
                       await Navigator.popAndPushNamed(context, '/bus');
                     } else if (check == 'Already') {
                       setState(() {
                         elevatedbutton = Text(
-                          'Save',
+                          StringConstant.Save.tr(),
                           style: TextStyle(color: Colors.black),
                         );
                       });
@@ -122,12 +124,12 @@ class _addbusState extends State<addbus> {
                           context: context,
                           builder: (context) => AlertDialog(
                                 icon: Icon(Icons.account_circle_sharp),
-                                title: Text("User_Id_Already_in_use_!").tr(),
+                                title: Text(StringConstant.User_Id_Already_in_use).tr(),
                               ));
                     } else {
                       setState(() {
                         elevatedbutton = Text(
-                          "Save".tr(),
+                          StringConstant.Save.tr(),
                           style: TextStyle(color: Colors.black),
                         );
                       });

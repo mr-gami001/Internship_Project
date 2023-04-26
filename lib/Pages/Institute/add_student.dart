@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/bloc/Institute_bloc/add_bus_data.dart';
 
 import '../../Services/institute/student.dart';
+import '../../string_constant.dart';
 
 
 
@@ -43,7 +44,7 @@ class _addstudentState extends State<addstudent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add_Student_Data").tr(),
+        title: Text(StringConstant.Add_Student_Data).tr(),
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<StudentfetchbusdataBloc, BusState>(
@@ -62,8 +63,8 @@ class _addstudentState extends State<addstudent> {
                 child: TextField(
                   controller: name,
                   decoration: InputDecoration(
-                    hintText: "Enter_Name".tr(),
-                    labelText: "Name".tr(),
+                    hintText: StringConstant.Enter_Name.tr(),
+                    labelText: StringConstant.Name1.tr(),
                     border: OutlineInputBorder()
                   ),
                 ),
@@ -74,8 +75,8 @@ class _addstudentState extends State<addstudent> {
                 child: TextField(
                   controller: userid,
                   decoration: InputDecoration(
-                      hintText: "Enter_User_Id".tr(),
-                      labelText: "User_Id".tr(),
+                      hintText: StringConstant.EnterUserId.tr(),
+                      labelText: StringConstant.UserId.tr(),
                       border: OutlineInputBorder()
                   ),
                 ),
@@ -105,12 +106,12 @@ class _addstudentState extends State<addstudent> {
                   children: [
 
                     Container(
-                      child: Text("Enter_Bus_No.".tr(),style: TextStyle(fontWeight: FontWeight.bold),),
+                      child: Text(StringConstant.Enter_Bus_No.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
 
                     Container(
                       padding: EdgeInsets.only(left: 30),
-                      width: MediaQuery.of(context).size.width*0.64,
+                      width: MediaQuery.of(context).size.width*0.55,
                       child: DropdownButton(
                         value: dropdownvalue,
                         isExpanded:  true,
@@ -132,14 +133,14 @@ class _addstudentState extends State<addstudent> {
                 width: MediaQuery.of(context).size.width*0.45,
                 margin: EdgeInsets.all(20),
                 child: ElevatedButton(
-                  child: Text("Save".tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  child: Text(StringConstant.Save.tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   onPressed: ()async{
                     var check = await stud.addstudentdata(name.text, userid.text, dropdownvalue!);
                     
                     if(check == 'Added'){
                       await showDialog(context: context, builder: (context)=>AlertDialog(
                         icon: Icon(CupertinoIcons.person_add_solid),
-                        title: Text("Data_Added").tr(),
+                        title: Text(StringConstant.Data_Added).tr(),
                       ));
                       await Navigator.pushNamed(context, '/student');
                     }
@@ -147,7 +148,7 @@ class _addstudentState extends State<addstudent> {
                     else if (check == 'Already'){
                       await showDialog(context: context, builder: (context)=>AlertDialog(
                         icon: Icon(Icons.account_circle),
-                        title: Text("User_Already_Exists"),
+                        title: Text(StringConstant.User_Already_Exists),
                       ));
                     }
                     else{
@@ -164,7 +165,7 @@ class _addstudentState extends State<addstudent> {
 
         else{
           return Center(
-            child: Text("Error").tr(),
+            child: Text(StringConstant.Error).tr(),
           );
         }
       },

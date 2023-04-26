@@ -6,6 +6,8 @@ import 'package:let_me_check/Model/StudentModel.dart';
 import 'package:let_me_check/Services/institute/student.dart';
 import 'package:let_me_check/bloc/Student_bloc/studentdata_busassociate.dart';
 
+import '../../string_constant.dart';
+
 class studentListByBus extends StatefulWidget {
   const studentListByBus({Key? key}) : super(key: key);
 
@@ -32,7 +34,7 @@ class _studentListByBusState extends State<studentListByBus> {
     return Scaffold(
       
       appBar:  AppBar(
-        title: Text("Student_List").tr(),
+        title: Text(StringConstant.Student_List).tr(),
         centerTitle: true,
         
         actions: [
@@ -62,7 +64,7 @@ class _studentListByBusState extends State<studentListByBus> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    title: Text("Name_:_".tr()+"${items.name.toString()}",textAlign: TextAlign.center,
+                    title: Text(StringConstant.Name.tr()+"${items.name.toString()}",textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 25,
@@ -78,12 +80,12 @@ class _studentListByBusState extends State<studentListByBus> {
 
           else if(state is NullDataState){
             return Center(
-              child: Text("No_Data_Found!", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w900),),
+              child: Text(StringConstant.No_Data_Found, style: TextStyle(fontSize: 20,fontWeight: FontWeight.w900),),
             );
           }
           
           else{
-            return Center(child: Text("Error").tr(),);
+            return Center(child: Text(StringConstant.Error).tr(),);
           }
         },
       ),

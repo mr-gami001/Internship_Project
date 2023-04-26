@@ -5,6 +5,7 @@ import 'package:let_me_check/Pages/Institute/parents.dart';
 import 'package:let_me_check/bloc/Institute_bloc/fetch_stuent_data_for_parents.dart';
 
 import '../../Services/institute/Parents.dart';
+import '../../string_constant.dart';
 import 'home_Institute.dart';
 
 class addparents extends StatefulWidget {
@@ -40,7 +41,7 @@ class _addparentsState extends State<addparents> {
 
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Add_Parents_Data").tr(),
+        title: Text(StringConstant.Add_Parents_Data).tr(),
       ),
 
       body: SingleChildScrollView(
@@ -69,8 +70,8 @@ class _addparentsState extends State<addparents> {
               child: TextField(
                 controller: name,
                 decoration: InputDecoration(
-                  hintText: "Enter_Name".tr(),
-                  labelText: "Name".tr(),
+                  hintText: StringConstant.Enter_Name.tr(),
+                  labelText: StringConstant.Name1.tr(),
                   border: OutlineInputBorder(),
                 ),
               )
@@ -81,8 +82,8 @@ class _addparentsState extends State<addparents> {
               child: TextField(
                 controller: userid,
                 decoration: InputDecoration(
-                  hintText: "Enter_User_Id".tr(),
-                  labelText: "User_Id".tr(),
+                  hintText: StringConstant.EnterUserId.tr(),
+                  labelText: StringConstant.UserId.tr(),
                   border: OutlineInputBorder(),
                 ),
               )
@@ -113,7 +114,7 @@ class _addparentsState extends State<addparents> {
               children: [
 
                 Container(
-                  child: Text("Select_Student_:".tr(),style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text(StringConstant.Select_Student.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
                 ),
 
                 Container(
@@ -143,8 +144,8 @@ class _addparentsState extends State<addparents> {
                 controller: pass,
                 obscureText: obsecuretext,
                 decoration: InputDecoration(
-                  hintText: "Enter_Password".tr(),
-                  labelText: "Password".tr(),
+                  hintText: StringConstant.EnterPassword.tr(),
+                  labelText: StringConstant.Password.tr(),
                   border: OutlineInputBorder(),
 
                   suffixIcon: IconButton(
@@ -179,7 +180,7 @@ class _addparentsState extends State<addparents> {
                   if(check == 'added'){
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.done),
-                      title: Text("Done").tr(),
+                      title: Text(StringConstant.Done).tr(),
                     ));
                     await Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>parents()));
                   }
@@ -187,7 +188,7 @@ class _addparentsState extends State<addparents> {
                   else if(check == 'student not found'){
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.no_accounts),
-                      title: Text("Invalid_Student_User_Id").tr(),
+                      title: Text(StringConstant.Invalid_Student_User_Id).tr(),
                     ));
                   }
 
@@ -195,7 +196,7 @@ class _addparentsState extends State<addparents> {
                   else{
                     await showDialog(context: context, builder: (context)=>AlertDialog(
                       icon: Icon(Icons.error),
-                      title: Text("Error").tr(),
+                      title: Text(StringConstant.Error).tr(),
                     ));
                   }
 
@@ -205,7 +206,7 @@ class _addparentsState extends State<addparents> {
                 }
               },
 
-              child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontSize: 20),),),
+              child: Text(StringConstant.Save.tr(),style: TextStyle(color: Colors.white,fontSize: 20),),),
             height: MediaQuery.of(context).size.height*0.075,
             width: MediaQuery.of(context).size.width*0.5,
           ),
@@ -217,7 +218,7 @@ class _addparentsState extends State<addparents> {
     }
 
     else{
-      return Text("Error").tr();
+      return Text(StringConstant.Error).tr();
     }
 
   },

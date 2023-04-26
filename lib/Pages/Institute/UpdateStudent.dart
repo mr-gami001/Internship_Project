@@ -7,6 +7,8 @@ import 'package:let_me_check/Services/institute/bus.dart';
 import 'package:let_me_check/Services/institute/student.dart';
 import 'package:let_me_check/bloc/Institute_bloc/Fetch_selected_StudentData.dart';
 
+import '../../string_constant.dart';
+
 class UpdateStudent extends StatefulWidget {
   const UpdateStudent({Key? key}) : super(key: key);
 
@@ -41,7 +43,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Update_Student_Data").tr(),
+        title: Text(StringConstant.Update_Student_Data).tr(),
       ),
 
       body: BlocBuilder(
@@ -66,8 +68,8 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     child: TextField(
                       controller: name,
                       decoration: InputDecoration(
-                          hintText: "Enter_Name".tr(),
-                          labelText: "Name".tr(),
+                          hintText: StringConstant.Enter_Name.tr(),
+                          labelText: StringConstant.Name1.tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
@@ -79,8 +81,8 @@ class _UpdateStudentState extends State<UpdateStudent> {
                       enabled: false,
                       controller: userid,
                       decoration: InputDecoration(
-                          hintText: "Enter_User_Id".tr(),
-                          labelText: "User_Id".tr(),
+                          hintText: StringConstant.EnterUserId.tr(),
+                          labelText: StringConstant.UserId.tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
@@ -91,8 +93,8 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     child: TextField(
                       controller: busno,
                       decoration: InputDecoration(
-                          hintText: "Enter_Bus_No.".tr(),
-                          labelText: "Bus_No.".tr(),
+                          hintText: StringConstant.Enter_Bus_No.tr(),
+                          labelText: StringConstant.Bus_No.tr(),
                           border: OutlineInputBorder()
                       ),
                     ),
@@ -107,7 +109,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
                     ),
                     margin: EdgeInsets.all(20),
                     child: TextButton(
-                      child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                      child: Text(StringConstant.Save.tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                       onPressed: ()async{
 
                         var check = await student.Updatestudentdata(name.text, userid.text, int.parse(busno.text));
@@ -115,7 +117,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
                         if(check == 'Added'){
                           await showDialog(context: context, builder: (context)=>AlertDialog(
                             icon: Icon(CupertinoIcons.person_add_solid),
-                            title: Text("Data_Added").tr(),
+                            title: Text(StringConstant.Data_Added).tr(),
                           ));
                           await Navigator.pushNamed(context, '/student');
                         }
@@ -135,7 +137,7 @@ class _UpdateStudentState extends State<UpdateStudent> {
           }
 
           else{
-            return Center(child: Text("Error").tr(),);
+            return Center(child: Text(StringConstant.Error).tr(),);
           }
         },
       ),

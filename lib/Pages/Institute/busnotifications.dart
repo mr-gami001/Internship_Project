@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:let_me_check/Model/NotificationModel.dart';
 import 'package:let_me_check/bloc/bus_bloc/notification_history.dart';
 
+import '../../string_constant.dart';
+
 class busnotifications extends StatefulWidget {
   const busnotifications({Key? key}) : super(key: key);
 
@@ -31,7 +33,7 @@ class _busnotificationsState extends State<busnotifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bus_Notification").tr(),
+        title: Text(StringConstant.Bus_Notification).tr(),
         centerTitle: true,
       ),
 
@@ -71,11 +73,11 @@ class _busnotificationsState extends State<busnotifications> {
           }
 
           else if (state is DataLossState){
-            return Center(child: Text('Error').tr(),);
+            return Center(child: Text(StringConstant.Error).tr(),);
           }
 
           else{
-            return Center(child: Text('Error').tr(),);
+            return Center(child: Text(StringConstant.Error).tr(),);
           }
         },
       ),

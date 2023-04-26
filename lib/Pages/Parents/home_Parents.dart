@@ -15,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Helper/Theme_Helper.dart';
 import '../../Model/NotificationModel.dart';
 import '../../bloc/bus_bloc/notification_history.dart';
+import '../../string_constant.dart';
 
 class home_Parents extends StatefulWidget {
   const home_Parents({Key? key}) : super(key: key);
@@ -133,7 +134,7 @@ class _home_ParentsState extends State<home_Parents> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child:  ListTile(
-                      title: Text("Change_Theme".tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
+                      title: Text(StringConstant.Change_Theme.tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
                       leading: isdark ? Icon(Icons.dark_mode_rounded,) : Icon(Icons.light_mode,color: Colors.black,),
                       onTap: (){currentTheme.toggleTheme();
                       },
@@ -151,7 +152,7 @@ class _home_ParentsState extends State<home_Parents> {
                           'https://img.icons8.com/ios-filled/30/000000/name.png',
                           color: isdark ? Colors.white : Colors.black),
                       title: Text(
-                        "Name_:_".tr() + snapshot.data!.name.toString(),
+                        StringConstant.Name.tr() + snapshot.data!.name.toString(),
                         style: TextStyle(fontWeight: FontWeight.w900),
                         textAlign: TextAlign.center,
                       ),
@@ -168,7 +169,7 @@ class _home_ParentsState extends State<home_Parents> {
                           'https://img.icons8.com/material-sharp/30/000000/user-male-circle.png',
                           color: isdark ? Colors.white : Colors.black),
                       title: Text(
-                        "User_Id_:_".tr() + snapshot.data!.userid.toString(),
+                        StringConstant.UserId1.tr() + snapshot.data!.userid.toString(),
                         style: TextStyle(fontWeight: FontWeight.w900),
                         textAlign: TextAlign.center,
                       ),
@@ -185,7 +186,7 @@ class _home_ParentsState extends State<home_Parents> {
                           'https://img.icons8.com/material-sharp/30/000000/id-verified.png',
                           color: isdark ? Colors.white : Colors.black),
                       title: Text(
-                        "Student_User_Id_:_".tr() +
+                        StringConstant.StudentUserId.tr() +
                             snapshot.data!.studentuserid.toString(),
                         style: TextStyle(fontWeight: FontWeight.w900),
                         textAlign: TextAlign.center,
@@ -203,7 +204,7 @@ class _home_ParentsState extends State<home_Parents> {
                           'https://img.icons8.com/ios-glyphs/30/000000/marker--v1.png',
                           color: isdark ? Colors.white : Colors.black),
                       title: Text(
-                        "Track_location".tr(),
+                        StringConstant.Tracklocation.tr(),
                         style: TextStyle(fontWeight: FontWeight.w900),
                         textAlign: TextAlign.center,
                       ),
@@ -224,7 +225,7 @@ class _home_ParentsState extends State<home_Parents> {
                     margin: EdgeInsets.fromLTRB(10, height * 0.2, 10, 0),
                     child: ListTile(
                       title: Text(
-                        "Log_Out".tr(),
+                        StringConstant.LogOut.tr(),
                         textAlign: TextAlign.center,
                       ),
                       leading: Icon(
@@ -252,7 +253,7 @@ class _home_ParentsState extends State<home_Parents> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Home_Parents").tr(),
+        title: Text(StringConstant.HomeParents).tr(),
         // actions: [
         //   IconButton(
         //       onPressed: () async {
@@ -318,7 +319,7 @@ class _home_ParentsState extends State<home_Parents> {
                   child: Container(
                     margin: EdgeInsets.only(top: 10),
                     child: Text(
-                      "Bus_History".tr(),
+                      StringConstant.BusHistory.tr(),
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w900,

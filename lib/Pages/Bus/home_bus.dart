@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:let_me_check/Services/busservice/Bus_breakdown.dart';
 import 'package:let_me_check/Services/institute/bus.dart';
 import 'package:let_me_check/Services/notificationservices.dart';
+import 'package:let_me_check/string_constant.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,7 +64,7 @@ class _home_BusState extends State<home_Bus> {
 
   @override
   Widget build(BuildContext context) {
-    String sharing =  "Start_Sharing_Location".tr();
+    String sharing =  StringConstant.StartSharingLocation.tr();
 
     double height = MediaQuery.of(context).size.height;
     bool isdark = (Theme.of(context).brightness == Brightness.dark);
@@ -101,7 +102,7 @@ class _home_BusState extends State<home_Bus> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child:  ListTile(
-                      title: Text("Change_Theme".tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
+                      title: Text(StringConstant.Change_Theme.tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
                       leading: isdark ? Icon(Icons.dark_mode_rounded,) : Icon(Icons.light_mode,color: Colors.black,),
                       onTap: (){currentTheme.toggleTheme();
                       },
@@ -116,7 +117,7 @@ class _home_BusState extends State<home_Bus> {
                     ),
                     child: ListTile(
                       leading: Image.network('https://img.icons8.com/ios-glyphs/30/000000/bus.png',color: isdark ? Colors.white : Colors.black),
-                      title: Text("Bus_No.:_".tr() +snapshot.data!.busno.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text(StringConstant.BusNo.tr() +snapshot.data!.busno.toString(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
 
@@ -128,7 +129,7 @@ class _home_BusState extends State<home_Bus> {
                     ),
                     child: ListTile(
                       leading: Image.network('https://img.icons8.com/material-sharp/30/000000/id-verified.png',color: isdark ? Colors.white : Colors.black),
-                      title: Text("User_Id".tr()+" : ${snapshot.data!.userid.toString()}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text(StringConstant.UserId.tr()+" : ${snapshot.data!.userid.toString()}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                     ),
                   ),
 
@@ -139,7 +140,7 @@ class _home_BusState extends State<home_Bus> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      title: Text("Log_Out".tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                      title: Text(StringConstant.LogOut.tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                       leading: Icon(Icons.logout,color: isdark ? Colors.white : Colors.black,),
                       onTap: ()async {
                         await logindata.clear();
@@ -165,7 +166,7 @@ class _home_BusState extends State<home_Bus> {
       ),
 
       appBar: AppBar(
-        title: Text("Home_Bus").tr(),
+        title: Text(StringConstant.HomeBus).tr(),
         centerTitle: true,
 
         actions: [
@@ -295,7 +296,7 @@ class _home_BusState extends State<home_Bus> {
                       // var check =  bus.startsharingloc(snapshot.data!.userid.toString());
                       // print("Start : "+check.toString());
                       // }
-                      sharing = "Stop_Sharing_Location".tr();
+                      sharing = StringConstant.StopSharingLocation.tr();
                       startlocationicon = Icon(Icons.location_off_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Started', 'Bus No. : ${bususerid.toString()} Started');
                       notificationServices.sendnotification('Bus Started', 'Bus No. : ${bususerid.toString()} Started', bususerid!);
@@ -308,7 +309,7 @@ class _home_BusState extends State<home_Bus> {
                       var stop = bus.stopsharingloc(bususerid!,lochistory!);
                       timer?.cancel();
                       print('Stop : '+stop.toString());
-                      sharing = "Start_Sharing_Location".tr();
+                      sharing = StringConstant.StartSharingLocation.tr();
                       startlocationicon = Icon(Icons.location_on_sharp,);
                       bus_breakdown.upload_breakdown_message(bususerid!, 'Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped');
                       notificationServices.sendnotification('Bus Stoped', 'Bus No. : ${bususerid.toString()} Stoped', bususerid!);
@@ -329,7 +330,7 @@ class _home_BusState extends State<home_Bus> {
               ),
               child: ListTile(
                 leading: Image.network('https://img.icons8.com/external-outlines-amoghdesign/27/000000/external-breakdown-car-maintenance-and-service-outlines-amoghdesign.png',color: isdark ? Colors.white : Colors.black,scale: 0.8,),
-                title: Text("Break_Down".tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
+                title: Text(StringConstant.BreakDown.tr(),style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.center,),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: ()async{
                   await Navigator.pushNamed(context, '/breakdown', arguments: bususerid!);

@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Model/StudentModel.dart';
 import 'package:let_me_check/bloc/Institute_bloc/fetch_student_data_bloc.dart';
 
+import '../../string_constant.dart';
+
 class student extends StatefulWidget {
   const student({Key? key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class _studentState extends State<student> {
       appBar: AppBar(
 
         centerTitle: true,
-        title: Text("Student_Section"),
+        title: Text(StringConstant.Student_Section.tr()),
 
         leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
           Navigator.popAndPushNamed(context, '/homeinst');
@@ -72,12 +74,12 @@ class _studentState extends State<student> {
                   ),
                   height: MediaQuery.of(context).size.height * 0.13,
                   child: ListTile(
-                    title: Text("Name_:_".tr()+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.035),),
-                    subtitle: Text("User_Id_:_".tr()+stud.userid.toString()+"\nRoll No. : ${stud.rollno}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.025),),
+                    title: Text(StringConstant.Name.tr()+stud.name.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.035),),
+                    subtitle: Text(StringConstant.UserId1.tr()+stud.userid.toString()+"\nRoll No. : ${stud.rollno}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: height*0.025),),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      Text("Bus_No.:_".tr()+"\n"+stud.busno.toString()),
+                      Text(StringConstant.BusNo.tr()+"\n"+stud.busno.toString()),
                     ],),
                     onTap: ()async{
                       Navigator.pushNamed(context, '/UpdateStudent', arguments: stud.userid);
@@ -94,7 +96,7 @@ class _studentState extends State<student> {
             return Container(
               margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
               child: Center(
-                child: Text("Error").tr(),
+                child: Text(StringConstant.Error).tr(),
               ),
             );
           }

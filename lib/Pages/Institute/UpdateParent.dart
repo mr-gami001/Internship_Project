@@ -6,6 +6,8 @@ import 'package:let_me_check/Model/ParentsModel.dart';
 import 'package:let_me_check/Services/institute/Parents.dart';
 import 'package:let_me_check/bloc/Institute_bloc/Fetch_selected_Parentdata.dart';
 
+import '../../string_constant.dart';
+
 class UpdateParent extends StatefulWidget {
   const UpdateParent({Key? key}) : super(key: key);
 
@@ -35,13 +37,13 @@ class _UpdateParentState extends State<UpdateParent> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Update_Student_Data").tr(),
+        title: Text(StringConstant.Update_Student_Data).tr(),
       ),
 
       body: BlocBuilder(
         bloc: selectedParentDataBloc,
         builder: (context, state){
-          if(state is FetchStudentDataEvent){
+          if(state is FetchStudentDataState){
             return Center(child: CircularProgressIndicator(),);
           }
 
@@ -63,8 +65,8 @@ class _UpdateParentState extends State<UpdateParent> {
                       child: TextField(
                         controller: name,
                         decoration: InputDecoration(
-                            hintText: "Enter_Name".tr(),
-                            labelText: "Name".tr(),
+                            hintText: StringConstant.Enter_Name.tr(),
+                            labelText: StringConstant.Name1.tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -76,8 +78,8 @@ class _UpdateParentState extends State<UpdateParent> {
                         enabled: false,
                         controller: userid,
                         decoration: InputDecoration(
-                            hintText: "Enter_User_Id".tr(),
-                            labelText: "User_Id".tr(),
+                            hintText: StringConstant.EnterUserId.tr(),
+                            labelText: StringConstant.UserId.tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -89,8 +91,8 @@ class _UpdateParentState extends State<UpdateParent> {
                         enabled: false,
                         controller: studentuserid,
                         decoration: InputDecoration(
-                            hintText: "Enter_Student_User_Id_".tr(),
-                            labelText: "Student_UserId".tr(),
+                            hintText: StringConstant.Enter_Student_User_Id_.tr(),
+                            labelText: StringConstant.Student_UserId.tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -101,8 +103,8 @@ class _UpdateParentState extends State<UpdateParent> {
                       child: TextField(
                         controller: password,
                         decoration: InputDecoration(
-                            hintText: "Enter_Password".tr(),
-                            labelText: "Password".tr(),
+                            hintText: StringConstant.EnterPassword.tr(),
+                            labelText: StringConstant.Password.tr(),
                             border: OutlineInputBorder()
                         ),
                       ),
@@ -117,7 +119,7 @@ class _UpdateParentState extends State<UpdateParent> {
                       ),
                       margin: EdgeInsets.all(20),
                       child: TextButton(
-                        child: Text("Save".tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                        child: Text(StringConstant.Save.tr(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                         onPressed: ()async{
 
                           var check = await parents.Updatestudentdata(name.text, userid.text, studentuserid.text, password.text);
@@ -125,7 +127,7 @@ class _UpdateParentState extends State<UpdateParent> {
                           if(check == 'Added'){
                             await showDialog(context: context, builder: (context)=>AlertDialog(
                               icon: Icon(CupertinoIcons.person_add_solid),
-                              title: Text("Data_Added").tr(),
+                              title: Text(StringConstant.Data_Added).tr(),
                             ));
                             await Navigator.pushNamed(context, '/parents');
                           }
@@ -146,7 +148,7 @@ class _UpdateParentState extends State<UpdateParent> {
           }
 
           else{
-            return Center(child: Text('Error').tr(),);
+            return Center(child: Text(StringConstant.Error).tr(),);
           }
         },
       ),

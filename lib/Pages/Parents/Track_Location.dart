@@ -12,6 +12,7 @@ import 'package:let_me_check/bloc/Parents_bloc/get_bus_location_bloc.dart';
 import 'package:location/location.dart';
 
 import '../../Services/institute/bus.dart';
+import '../../string_constant.dart';
 
 class tracklocation extends StatefulWidget {
   const tracklocation({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class _tracklocationState extends State<tracklocation> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Track_Bus_Location").tr(),
+        title: Text(StringConstant.TrackBusLocation).tr(),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -69,7 +70,7 @@ class _tracklocationState extends State<tracklocation> {
               );
             } else if (state is permissiondenied) {
               return Center(
-                child: Text("Location_permission_not_Granted".tr()),
+                child: Text(StringConstant.LocationPermissionNotGranted.tr()),
               );
             } else if (state is BusLocationGainedState) {
               _timer = Timer(Duration(milliseconds: 10), () async {
@@ -108,7 +109,7 @@ class _tracklocationState extends State<tracklocation> {
             } else if (state is BusLocationLossState) {
               return Center(child: Text(state.error!));
             } else {
-              return Text("Error").tr();
+              return Text(StringConstant.Error).tr();
             }
           },
         ),

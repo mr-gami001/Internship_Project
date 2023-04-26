@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Model/ParentsModel.dart';
 import '../../bloc/Institute_bloc/fetch_parents_data_bloc.dart';
+import '../../string_constant.dart';
 
 class parents extends StatefulWidget {
   const parents({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _parentsState extends State<parents> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Parents").tr(),
+        title: Text(StringConstant.Parents).tr(),
 
 
         leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
@@ -69,9 +70,9 @@ class _parentsState extends State<parents> {
                     ),
                     height: MediaQuery.of(context).size.height * 0.1,
                     child: ListTile(
-                      title: Text("Name_:_".tr()+paren.name.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: Text("User_Id_:_".tr()+paren.userid.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: Text("Student_User_Id_:_".tr()+paren.studentuserid.toString()),
+                      title: Text(StringConstant.Name.tr()+paren.name.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                      subtitle: Text(StringConstant.UserId1.tr()+paren.userid.toString(),style: TextStyle(fontWeight: FontWeight.bold),),
+                      trailing: Text(StringConstant.StudentUserId.tr()+paren.studentuserid.toString()),
                       onTap: (){
                         Navigator.pushNamed(context, '/UpdateParent',arguments: paren.userid);
                       },
@@ -87,7 +88,7 @@ class _parentsState extends State<parents> {
               return Container(
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                 child: Center(
-                  child: Text("Error").tr(),
+                  child: Text(StringConstant.Error).tr(),
                 ),
               );
             }

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Model/BusModel.dart';
 import 'package:let_me_check/Services/institute/bus.dart';
 import 'package:let_me_check/Services/notificationservices.dart';
+import 'package:let_me_check/string_constant.dart';
 
 import '../../bloc/Institute_bloc/fetch_bus_data_for_student_bloc.dart';
 
@@ -38,7 +39,7 @@ class _busState extends State<bus> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Bus".tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+        title: Text(StringConstant.bus.tr(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
 
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -81,12 +82,12 @@ class _busState extends State<bus> {
 
 
                       child: ListTile(
-                        title: Text("Bus_No.:_".tr()+"${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.start,),
-                        subtitle: Text("Press_For_Track_Location".tr(),textAlign: TextAlign.start,),
+                        title: Text(StringConstant.BusNo.tr()+"${items.busno}",style: TextStyle(fontWeight: FontWeight.w900),textAlign: TextAlign.start,),
+                        subtitle: Text(StringConstant.Press_For_Track_Location.tr(),textAlign: TextAlign.start,),
                         trailing: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Bus_UserId_:_".tr()+"\n"+items.userid.toString()),
+                            Text(StringConstant.Bus_UserId.tr()+"\n"+items.userid.toString()),
                           ],
                         ),
                         onTap: ()async {
@@ -109,7 +110,7 @@ class _busState extends State<bus> {
                     margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                     color: Colors.red,
                     alignment: Alignment.center,
-                    child: Text("Error".tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
+                    child: Text(StringConstant.Error.tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
                 ),
               );
             }
@@ -122,7 +123,7 @@ class _busState extends State<bus> {
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
                   color: Colors.red,
                   alignment: Alignment.center,
-                    child: Text("Error".tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
+                    child: Text(StringConstant.Error.tr(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 30),)
                 ),
               );
             }

@@ -6,6 +6,8 @@ import 'package:let_me_check/Model/NotificationModel.dart';
 import 'package:let_me_check/Services/busservice/Bus_breakdown.dart';
 import 'package:let_me_check/Services/notificationservices.dart';
 
+import '../../string_constant.dart';
+
 class break_down extends StatefulWidget {
   const break_down({Key? key}) : super(key: key);
 
@@ -29,7 +31,7 @@ class _break_downState extends State<break_down> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("Break_Down").tr(),
+        title: Text(StringConstant.BreakDown).tr(),
         centerTitle: true,
 
       ),
@@ -47,8 +49,8 @@ class _break_downState extends State<break_down> {
 
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "Enter title".tr(),
-                labelText: "Title".tr()
+                hintText: StringConstant.Enter_title.tr(),
+                labelText: StringConstant.Title.tr()
               ),
             ),
           ),
@@ -61,8 +63,8 @@ class _break_downState extends State<break_down> {
 
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "Enter Description",
-                  labelText: "Description"
+                  hintText: StringConstant.EnterDescription.tr(),
+                  labelText: StringConstant.Description.tr()
               ),
             ),
           ),
@@ -79,7 +81,7 @@ class _break_downState extends State<break_down> {
                   await showDialog(context: context, builder: (context)=>AlertDialog(title: Text('Done'),icon: Icon(Icons.done_all),));
                 }
               },
-              child: Text("Send_Message").tr(),
+              child: Text(StringConstant.SendMessage.tr()),
             ),
           )
 

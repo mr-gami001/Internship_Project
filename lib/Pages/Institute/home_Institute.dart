@@ -12,6 +12,7 @@ import 'package:let_me_check/bloc/Institute_bloc/home_insstBloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Services/loginservice.dart';
+import '../../string_constant.dart';
 
 class home_institute extends StatefulWidget {
   const home_institute({Key? key}) : super(key: key);
@@ -97,7 +98,7 @@ class _home_instituteState extends State<home_institute> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child:  ListTile(
-                title: Text("Change_Theme".tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
+                title: Text(StringConstant.Change_Theme.tr(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w900)),
                 leading: isdark ? Icon(Icons.dark_mode_rounded,) : Icon(Icons.light_mode,color: Colors.black,),
                 onTap: (){currentTheme.toggleTheme();
                 },
@@ -116,7 +117,7 @@ class _home_instituteState extends State<home_institute> {
                   color: isdark ? Colors.white : Colors.black,
                 ),
                 title: Text(
-                  "Bus_Data".tr(),
+                  StringConstant.Bus_Data.tr(),
                   style: TextStyle(fontWeight: FontWeight.w900),
                   textAlign: TextAlign.center,
                 ),
@@ -137,7 +138,7 @@ class _home_instituteState extends State<home_institute> {
                     'https://img.icons8.com/windows/32/000000/schoolboy-at-a-desk.png',
                     color: isdark ? Colors.white : Colors.black),
                 title: Text(
-                  "Student_Data".tr(),
+                  StringConstant.Student_Data.tr(),
                   style: TextStyle(fontWeight: FontWeight.w900),
                   textAlign: TextAlign.center,
                 ),
@@ -158,7 +159,7 @@ class _home_instituteState extends State<home_institute> {
                     "https://img.icons8.com/ios-glyphs/30/000000/couple-man-woman.png",
                     color: isdark ? Colors.white : Colors.black),
                 title: Text(
-                  "Parents_Data".tr(),
+                  StringConstant.Parents_Data.tr(),
                   style: TextStyle(fontWeight: FontWeight.w900),
                   textAlign: TextAlign.center,
                 ),
@@ -186,7 +187,7 @@ class _home_instituteState extends State<home_institute> {
                   leading: Icon(Icons.logout,
                       color: isdark ? Colors.white : Colors.black),
                   title: Text(
-                    "Log_Out".tr(),
+                    StringConstant.LogOut.tr(),
                     style: TextStyle(fontWeight: FontWeight.w900),
                     textAlign: TextAlign.center,
                   ),
@@ -195,7 +196,7 @@ class _home_instituteState extends State<home_institute> {
         ),
       ),
       appBar: AppBar(
-        title: Text("Home_Institute").tr(),
+        title: Text(StringConstant.Home_Institute).tr(),
         centerTitle: true,
         // actions: [
         //   IconButton(
@@ -276,7 +277,7 @@ class _home_instituteState extends State<home_institute> {
                     ),
                     child: ListTile(
                       title: Text(
-                        "Bus_No.:_".tr() + "${busdata.userid.toString()}",
+                        StringConstant.BusNo.tr() + "${busdata.userid.toString()}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
@@ -285,7 +286,7 @@ class _home_instituteState extends State<home_institute> {
                       ),
                       subtitle: Container(
                           margin: EdgeInsets.only(top: 10),
-                          child: Text("View_Student_List".tr(),
+                          child: Text(StringConstant.View_Student_List.tr(),
                               textAlign: TextAlign.center)),
                       trailing: Icon(Icons.arrow_forward_ios),
                       onTap: () {
@@ -299,11 +300,11 @@ class _home_instituteState extends State<home_institute> {
             );
           } else if (state is DataLossState) {
             return Container(
-              child: Text("Error").tr(),
+              child: Text(StringConstant.Error).tr(),
             );
           } else {
             return Container(
-              child: Text("Error").tr(),
+              child: Text(StringConstant.Error).tr(),
             );
           }
         },

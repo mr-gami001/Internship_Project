@@ -1,7 +1,7 @@
+import 'dart:ui';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:let_me_check/Pages/Bus/break_down.dart';
 import 'package:let_me_check/Pages/Bus/home_bus.dart';
 import 'package:let_me_check/Pages/Bus/notificationhistory.dart';
@@ -30,17 +30,25 @@ import 'package:easy_localization/easy_localization.dart';
 
 Theme_Help theme = Theme_Help();
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Pass all uncaught "fatal" errors from the framework to Crashlytics
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  //for crash analysis
+  FlutterError.onError = (error) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(error);
+  };
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
 
   await FirebaseMessaging.instance.requestPermission(
       alert: true,
@@ -49,35 +57,33 @@ Future<void> main() async {
       sound: true,
       criticalAlert: true,
       carPlay: true,
-      provisional: true
-  );
+      provisional: true);
 
   //initialize the easy localization service
   EasyLocalization.ensureInitialized();
 
-  runApp(
-      EasyLocalization(
-          child: myApp(),
-          fallbackLocale: Locale('en', 'US'),
-          supportedLocales: [
-            Locale('en', 'US'),
-            Locale('hi', 'IN'),
-            Locale('gu', 'IN')
-          ],
-          path: 'assets/translations'
-      )
-  );
+  runApp(EasyLocalization(
+      child: myApp(),
+      fallbackLocale: Locale('en', 'US'),
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('hi', 'IN'),
+        Locale('gu', 'IN')
+      ],
+      path: 'assets/translations'));
 }
 
-
 class myApp extends StatefulWidget {
-  const myApp({Key? key}) : super(key: key);
+
+  myApp({Key? key}) : super(key: key);
+
 
   @override
   State<myApp> createState() => _myAppState();
 }
 
 class _myAppState extends State<myApp> {
+
 
 
   set() async {
@@ -96,11 +102,13 @@ class _myAppState extends State<myApp> {
     currentTheme.addListener(() {
       setState(() {});
     });
+
     super.initState();
   }
 
   @override
   void didChangeDependencies() async {
+
     await Permission.location.request();
     await Permission.notification.request();
     super.didChangeDependencies();
@@ -114,40 +122,26 @@ class _myAppState extends State<myApp> {
       theme: theme.light_theme(),
       darkTheme: theme.dark_theme(),
       debugShowCheckedModeBanner: false,
-
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
-
-
       routes: {
-
         '/': (context) => login(),
         '/forgetpass': (context) => forgetpass(),
         '/homeinst': (context) => home_institute(),
-
-
         '/homestudent': (context) => home_Student(),
         '/homeparents': (context) => home_Parents(),
         '/homebus': (context) => home_Bus(),
-
-
         '/student': (context) => student(),
         '/parents': (context) => parents(),
         '/bus': (context) => bus(),
-
-
         '/addstudent': (context) => addstudent(),
         '/addparents': (context) => addparents(),
         '/addbus': (context) => addbus(),
-
         '/tracklocation': (context) => tracklocation(),
-
-
         '/breakdown': (context) => break_down(),
         '/notificationhistory': (context) => notificationhistory(),
         '/busnotifications': (context) => busnotifications(),
-
         '/studentlsitbusassosiated': (context) => studentListByBus(),
         '/UpdateStudent': (context) => UpdateStudent(),
         '/UpdateParent': (context) => UpdateParent(),

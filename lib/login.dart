@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import 'package:let_me_check/Services/loginservice.dart';
@@ -43,6 +44,7 @@ class _loginState extends State<login> {
   @override
   void initState() {
     rememberme();
+    FirebaseAnalytics.instance.setCurrentScreen(screenName: "Login Screen");
     super.initState();
   }
 
